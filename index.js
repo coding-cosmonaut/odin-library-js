@@ -3,6 +3,14 @@ const addNewBookBttn = document.querySelector(".new-book-bttn");
 const modal = document.querySelector(".modal");
 const modalDiv = document.querySelector("#closing-div");
 const cancelModal = document.querySelector("#cancel");
+const submitForm = document.querySelector("#bookForm");
+
+submitForm.addEventListener("submit", function (e) {
+  //e.preventDefault();
+  let formData = new FormData(submitForm);
+
+  console.log(Object.fromEntries(formData));
+});
 
 const myLibrary = [];
 
