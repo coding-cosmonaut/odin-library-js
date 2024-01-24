@@ -1,0 +1,68 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --font-heading: "Rajdhani", sans-serif;
+  --shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  box-shadow: var(--shadow);
+  -webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+.icon {
+  width: 60px;
+  height: auto;
+}
+
+.heading {
+  font-size: 4.5rem;
+  font-weight: 300;
+  font-family: var(--font-heading);
+}
+
+/*NEWBOOK BUTTON*/
+.new-book-container {
+  width: 100%;
+  min-height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.new-book-bttn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+}
+.new-book-bttn:hover {
+  cursor: pointer;
+}
+
+/*CARDS*/
+.card-container {
+  width: 100vw;
+  height: auto;
+  margin: 40px;
+  display: flex;
+  gap: 60px;
+}
+
+.list-ul {
+  display: flex;
+  list-style: none;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.list-li {
+  font-size: 2.5rem;
+}
