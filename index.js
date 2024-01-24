@@ -1,5 +1,8 @@
 const cardsContain = document.querySelector(".card-container");
 const addNewBookBttn = document.querySelector(".new-book-bttn");
+const modal = document.querySelector(".modal");
+const modalDiv = document.querySelector("#closing-div");
+const cancelModal = document.querySelector("#cancel");
 
 const myLibrary = [];
 
@@ -27,7 +30,15 @@ function displayToPage() {
   }
 }
 
-addNewBookBttn.addEventListener("click", () => {});
+addNewBookBttn.addEventListener("click", () => {
+  modal.showModal();
+});
+
+modal.addEventListener("click", () => modal.close());
+
+modalDiv.addEventListener("click", (event) => event.stopPropagation());
+
+cancelModal.addEventListener("click", () => modal.close());
 
 // addBookToLibrary('Hobbit','J.R.R.', 234, 'read')
 // addBookToLibrary('Fascist','Uknown', 294, 'not read')

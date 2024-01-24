@@ -47,6 +47,37 @@
   cursor: pointer;
 }
 
+/*MODAL/FORM*/
+.modal {
+  width: 400px;
+  height: 400px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+}
+
+#closing-div {
+  height: 100%;
+  width: 100%;
+}
+
+.add-book-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+}
+
+.input-container > input {
+    padding: 20px;
+}
+
+.button-container {
+    
+}
+
 /*CARDS*/
 .card-container {
   width: 100vw;

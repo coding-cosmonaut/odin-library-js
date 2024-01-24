@@ -22,6 +22,33 @@
       <button class="new-book-bttn">Add New Book</button>
     </div>
 
+    <dialog class="modal">
+      <div id="closing-div">
+        <form id="bookForm" class="add-book-form" action="">
+          <div class="input-container">
+            <label for="title"></label>
+            <input name="title" id="title" placeholder="Title" type="text" />
+          </div>
+          <div class="input-container">
+            <label for="author"></label>
+            <input name="author" id="author" placeholder="Author" type="text" />
+          </div>
+          <div class="input-container">
+            <label for="pages"></label>
+            <input name="pages" id="pages" placeholder="Pages" type="text" />
+          </div>
+          <div class="input-container">
+            <label for="read">Have you read it?</label>
+            <input name="read" id="read" type="checkbox" />
+          </div>
+          <div class="button-container">
+            <button id="cancel" type="reset">Cancel</button>
+            <button type="submit">Submit</button>
+          </div>
+        </form>
+      </div>
+    </dialog>
+
     <div class="card-container"></div>
     <script src="index.js"></script>
   </body>
