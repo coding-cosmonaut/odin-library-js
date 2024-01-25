@@ -7,6 +7,11 @@
 :root {
   --font-heading: "Rajdhani", sans-serif;
   --shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.75);
+  --green-color: #7bf8b6;
+}
+
+body {
+  background-color: #faf9f6;
 }
 
 .header {
@@ -14,6 +19,7 @@
   align-items: center;
   padding: 20px;
   box-shadow: var(--shadow);
+  background-color: white;
   -webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.75);
 }
@@ -30,7 +36,7 @@
 }
 
 /*NEWBOOK BUTTON*/
-.new-book-container {
+.button-container {
   width: 100%;
   margin-top: 10px;
   min-height: 100px;
@@ -47,6 +53,9 @@
   border-radius: 12px;
   width: 60%;
   transition: all 0.5s ease;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  text-transform: uppercase;
 }
 .new-book-bttn:hover {
   color: white;
@@ -59,12 +68,19 @@
 
 /*MODAL/FORM*/
 .modal {
-  width: 400px;
-  height: 400px;
+  width: 350px;
+  height: 450px;
   position: absolute;
   transform: translate(-50%, -50%);
   left: 50%;
   top: 50%;
+  border-radius: 12px;
+  border: 1px solid black;
+}
+
+.modal::backdrop {
+  background: #fff5;
+  backdrop-filter: blur(4px);
 }
 
 #closing-div {
@@ -80,24 +96,76 @@
   height: 100%;
 }
 
+.add-book-form h2 {
+  font-weight: bold;
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+}
+
 .input-container > input {
-  padding: 20px;
+  padding: 20px 40px;
+  border-radius: 12px;
+}
+
+input::placeholder {
+  font-size: 2rem;
+  text-align: start;
+  font-family: var(--font-heading);
+  font-weight: 300;
+}
+
+label[for="read"] {
+  font-size: 2.5rem;
+  margin-right: 20px;
+  font-family: var(--font-heading);
+  font-weight: 600;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.buttons-container button {
+  padding: 16px 47px;
+  border-radius: 12px;
+  margin: 5px;
+  text-transform: uppercase;
+  font-family: var(--font-heading);
+  font-weight: 300;
+  font-size: 1.3rem;
+}
+.buttons-container button:hover {
+  cursor: pointer;
+}
+
+button[type="submit"] {
+  background-color: var(--green-color);
+}
+
+button[type="reset"] {
+  background-color: #ff8080;
 }
 
 /*CARDS*/
 .card-container {
-  width: 100vw;
-  height: auto;
-  margin: 40px;
-  display: flex;
-  gap: 60px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  margin: 20px;
 }
 
 .list-ul {
   display: flex;
   list-style: none;
+  background-color: white;
   flex-direction: column;
+  align-items: center;
   gap: 20px;
+  border-radius: 12px;
+  margin: 20px;
+  padding: 30px;
+  border: 1px solid black;
 }
 
 .list-li {

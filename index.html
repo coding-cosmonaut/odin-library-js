@@ -18,13 +18,14 @@
       <h1 class="heading">Library</h1>
     </div>
 
-    <div class="new-book-container">
+    <div class="button-container">
       <button class="new-book-bttn">Add New Book</button>
     </div>
 
     <dialog class="modal">
       <div id="closing-div">
         <form id="bookForm" class="add-book-form" action="">
+          <h2>New Book Form</h2>
           <div class="input-container">
             <label for="title"></label>
             <input
@@ -52,14 +53,15 @@
               name="pages"
               id="pages"
               placeholder="Pages"
-              type="text"
+              type="number"
+              max="10000"
             />
           </div>
           <div class="input-container">
-            <label for="read">Have you read it?</label>
+            <label for="read">Read?</label>
             <input name="read" id="read" type="checkbox" />
           </div>
-          <div class="button-containers">
+          <div class="buttons-container">
             <button id="cancel" type="reset">Cancel</button>
             <button type="submit">Submit</button>
           </div>
