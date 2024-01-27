@@ -76,6 +76,7 @@ body {
   top: 50%;
   border-radius: 12px;
   border: 1px solid black;
+  box-shadow: var(--shadow);
 }
 
 .modal::backdrop {
@@ -105,6 +106,7 @@ body {
 .input-container > input {
   padding: 20px 40px;
   border-radius: 12px;
+  font-size: 1rem;
 }
 
 input::placeholder {
@@ -135,6 +137,7 @@ label[for="read"] {
   font-family: var(--font-heading);
   font-weight: 300;
   font-size: 1.3rem;
+  border: none;
 }
 .buttons-container button:hover {
   cursor: pointer;
