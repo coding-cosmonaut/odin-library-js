@@ -80,9 +80,9 @@ function displayToPage(addedObj) {
   for (let book of newArr) {
     cardsContain.innerHTML += `
         <ul data-index=${idx} class="list-ul">
-            <li class="list-li">${book.title}</li>
-            <li class="list-li">${book.author}</li>
-            <li class="list-li">${book.pages}</li>
+            <h4 class="list-li title">${book.title}</h4>
+            <li class="list-li"><span id='byPrepend'>by </span>${book.author}</li>
+            <li class="list-li pages">${book.pages}</li>
             <li class="list-li">
                 <button class='${
                   book.read == "true" ? "success-read" : "failed-noread"

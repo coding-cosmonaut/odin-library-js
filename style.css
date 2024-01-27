@@ -114,7 +114,7 @@ body {
   font-size: 1rem;
 }
 
-input[type='checkbox'] {
+input[type="checkbox"] {
   appearance: none;
   position: relative;
   display: inline-block;
@@ -211,9 +211,25 @@ button[type="reset"] {
   margin: 20px;
   padding: 30px;
   border: 1px solid black;
+  box-shadow: var(--shadow);
 }
 
-#toggler,#remove {
+.title::first-letter {
+  text-transform: uppercase;
+  font-size: 3rem;
+}
+
+.list-ul .pages {
+  font-size: 1.6rem;
+}
+
+#byPrepend {
+  font-size: 2rem;
+  font-style: italic;
+}
+
+#toggler,
+#remove {
   padding: 15px 80px;
   border-radius: 12px;
   text-transform: uppercase;
@@ -222,9 +238,15 @@ button[type="reset"] {
   letter-spacing: 0.1rem;
   font-size: 1rem;
   font-weight: bold;
+  transition: transform 0.25s ease;
 }
-#toggler,#remove:hover {
+#remove:hover {
   cursor: pointer;
+  transform: scale(0.98);
+}
+#toggler:hover {
+  cursor: pointer;
+  transform: scale(0.98);
 }
 
 .success-read {
