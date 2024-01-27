@@ -6,20 +6,27 @@
 
 :root {
   --font-heading: "Rajdhani", sans-serif;
+  --font-cards: "Barlow Semi Condensed", sans-serif;
   --shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.75);
   --green-color: #7bf8b6;
+  --primary-red-color: #ff8080;
+  --body-background: #faf9f6;
+  --spacing-sm: 16px;
+  --spacing-md: 34px;
+  --spacing-lg: 50px;
+  --border-rad: 12px;
 }
 
 body {
-  background-color: #faf9f6;
+  background-color: var(--body-background);
 }
 
+/*HEADER*/
 .header {
   display: flex;
   align-items: center;
-  padding: 20px;
+  padding: var(--spacing-sm);
   box-shadow: var(--shadow);
-  background-color: white;
   -webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.75);
 }
@@ -37,20 +44,17 @@ body {
 
 /*NEWBOOK BUTTON*/
 .button-container {
-  width: 100%;
-  margin-top: 10px;
-  min-height: 100px;
+  margin: var(--spacing-md);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .new-book-bttn {
-  border: 1px solid black;
   background-color: white;
   font-size: 1.5rem;
-  padding: 20px 40px;
-  border-radius: 12px;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-rad);
   width: 60%;
   transition: all 0.5s ease;
   font-family: var(--font-heading);
@@ -68,15 +72,15 @@ body {
 
 /*MODAL/FORM*/
 .modal {
-  width: 350px;
-  height: 450px;
+  width: 390px;
+  height: 500px;
   position: absolute;
   transform: translate(-50%, -50%);
   left: 50%;
   top: 50%;
-  border-radius: 12px;
-  border: 1px solid black;
+  border-radius: var(--border-rad);
   box-shadow: var(--shadow);
+  border: 1px solid black;
 }
 
 .modal::backdrop {
@@ -95,12 +99,22 @@ body {
   justify-content: space-around;
   align-items: center;
   height: 100%;
+  font-family: var(--font-heading);
 }
 
 .add-book-form h2 {
-  font-weight: bold;
-  font-family: var(--font-heading);
   font-size: 2.5rem;
+  font-weight: 600;
+}
+
+.add-book-form p {
+  color: var(--primary-red-color);
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.hidden {
+  display: none;
 }
 
 .input-container {
@@ -109,8 +123,8 @@ body {
 }
 
 .input-container > input {
-  padding: 20px 40px;
-  border-radius: 12px;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-rad);
   font-size: 1rem;
 }
 
@@ -118,7 +132,7 @@ input[type="checkbox"] {
   appearance: none;
   position: relative;
   display: inline-block;
-  background: #ff8080;
+  background: var(--primary-red-color);
   height: 2.7rem;
   width: 2.75rem;
   border-radius: 2rem;
@@ -146,35 +160,29 @@ input:checked {
 }
 
 input:checked::before {
-  transform: translateX(2.3rem);
+  transform: translateX(1.5rem);
 }
 
 input::placeholder {
-  font-size: 1.3rem;
-  font-family: var(--font-heading);
-  font-weight: 300;
+  font-weight: bold;
   text-transform: uppercase;
 }
 
 label[for="read"] {
-  font-size: 2.5rem;
-  margin-right: 20px;
-  font-family: var(--font-heading);
-  font-weight: 600;
+  font-size: 2.9rem;
+  margin-right: var(--spacing-md);
 }
 
 .buttons-container {
   display: flex;
-  justify-content: center;
-  width: 100%;
 }
 
 .buttons-container button {
-  padding: 16px 47px;
-  border-radius: 12px;
-  margin: 5px;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--border-rad);
+  margin: calc(var(--spacing-sm) / 3);
   text-transform: uppercase;
-  font-family: var(--font-heading);
+  font-family: inherit;
   font-weight: 600;
   font-size: 1.3rem;
   border: none;
@@ -190,55 +198,63 @@ button[type="submit"] {
 }
 
 button[type="reset"] {
-  background-color: #ff8080;
+  background-color: var(--primary-red-color);
 }
 
 /*CARDS*/
 .card-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  margin: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  margin: var(--spacing-md);
+  font-family: var(--font-cards);
 }
 
 .list-ul {
   display: flex;
   list-style: none;
-  background-color: white;
   flex-direction: column;
-  align-items: center;
   gap: 20px;
-  border-radius: 12px;
-  margin: 20px;
-  padding: 30px;
+  border-radius: var(--border-rad);
+  margin: var(--spacing-sm);
+  padding: var(--spacing-md);
   border: 1px solid black;
   box-shadow: var(--shadow);
 }
 
+.list-li {
+  font-size: 2.5rem;
+  text-align: center;
+}
+
+.title {
+  font-weight: 700;
+}
+
 .title::first-letter {
   text-transform: uppercase;
-  font-size: 3rem;
 }
 
 .list-ul .pages {
   font-size: 1.6rem;
 }
 
-#byPrepend {
+#bySpan {
   font-size: 2rem;
   font-style: italic;
+  font-weight: 100;
 }
 
 #toggler,
 #remove {
-  padding: 15px 80px;
-  border-radius: 12px;
+  padding: var(--spacing-sm) 0;
+  border-radius: var(--border-rad);
   text-transform: uppercase;
-  font-family: var(--font-heading);
-  font-weight: 600;
+  font-family: inherit;
+  font-weight: 700;
   letter-spacing: 0.1rem;
   font-size: 1rem;
-  font-weight: bold;
   transition: transform 0.25s ease;
+  width: 100%;
 }
 #remove:hover {
   cursor: pointer;
@@ -254,9 +270,5 @@ button[type="reset"] {
 }
 
 .failed-noread {
-  background-color: #ff8080;
-}
-
-.list-li {
-  font-size: 2.5rem;
+  background-color: var(--primary-red-color);
 }

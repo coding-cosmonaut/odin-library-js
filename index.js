@@ -4,6 +4,7 @@ const modal = document.querySelector(".modal");
 const modalDiv = document.querySelector("#closing-div");
 const cancelModal = document.querySelector("#cancel");
 const submitForm = document.querySelector("#bookForm");
+const hiddenLi = document.querySelector(".hidden");
 
 let myLibrary = [];
 
@@ -19,8 +20,12 @@ submitForm.addEventListener("submit", function (e) {
       parsedData.pages,
       parsedData.read
     );
+    console.log(hiddenLi)
+    hiddenLi.classList.add('hidden');
     modal.close();
     submitForm.reset();
+  } else {
+    hiddenLi.classList.remove("hidden");
   }
 });
 
@@ -81,8 +86,10 @@ function displayToPage(addedObj) {
     cardsContain.innerHTML += `
         <ul data-index=${idx} class="list-ul">
             <h4 class="list-li title">${book.title}</h4>
-            <li class="list-li"><span id='byPrepend'>by </span>${book.author}</li>
-            <li class="list-li pages">${book.pages}</li>
+            <li class="list-li"><span id='bySpan'>by </span>${
+              book.author
+            }</li>
+            <li class="list-li pages">${book.pages} pages</li>
             <li class="list-li">
                 <button class='${
                   book.read == "true" ? "success-read" : "failed-noread"
