@@ -103,17 +103,57 @@ body {
   font-size: 2.5rem;
 }
 
+.input-container {
+  display: flex;
+  align-items: center;
+}
+
 .input-container > input {
   padding: 20px 40px;
   border-radius: 12px;
   font-size: 1rem;
 }
 
+input[type='checkbox'] {
+  appearance: none;
+  position: relative;
+  display: inline-block;
+  background: #ff8080;
+  height: 2.7rem;
+  width: 2.75rem;
+  border-radius: 2rem;
+  box-shadow: 0px 1px 3px inset;
+  transition: 0.25s linear background;
+}
+
+input::before {
+  content: "";
+  display: block;
+  width: 2.25rem;
+  height: 2.25rem;
+  background: #fff;
+  border-radius: 1.2rem;
+  position: absolute;
+  top: 0.2rem;
+  left: 0.2rem;
+  box-shadow: 0px 1px 3px;
+  transition: 0.25s linear transform;
+  transform: translateX(0rem);
+}
+
+input:checked {
+  background: var(--green-color);
+}
+
+input:checked::before {
+  transform: translateX(2.3rem);
+}
+
 input::placeholder {
-  font-size: 2rem;
-  text-align: start;
+  font-size: 1.3rem;
   font-family: var(--font-heading);
   font-weight: 300;
+  text-transform: uppercase;
 }
 
 label[for="read"] {
@@ -135,12 +175,14 @@ label[for="read"] {
   margin: 5px;
   text-transform: uppercase;
   font-family: var(--font-heading);
-  font-weight: 300;
+  font-weight: 600;
   font-size: 1.3rem;
   border: none;
+  transition: transform 0.3s ease;
 }
 .buttons-container button:hover {
   cursor: pointer;
+  transform: scale(0.98);
 }
 
 button[type="submit"] {
@@ -169,6 +211,28 @@ button[type="reset"] {
   margin: 20px;
   padding: 30px;
   border: 1px solid black;
+}
+
+#toggler,#remove {
+  padding: 15px 80px;
+  border-radius: 12px;
+  text-transform: uppercase;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+  font-size: 1rem;
+  font-weight: bold;
+}
+#toggler,#remove:hover {
+  cursor: pointer;
+}
+
+.success-read {
+  background-color: var(--green-color);
+}
+
+.failed-noread {
+  background-color: #ff8080;
 }
 
 .list-li {

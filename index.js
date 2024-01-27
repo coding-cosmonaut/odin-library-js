@@ -65,8 +65,12 @@ function toggle(event) {
   );
   if (myLibrary[getIdx].hasRead()) {
     event.target.textContent = "Read";
+    event.target.classList.remove("failed-noread");
+    event.target.classList.add("success-read");
   } else {
     event.target.textContent = "Not Read";
+    event.target.classList.remove("success-read");
+    event.target.classList.add("failed-noread");
   }
 }
 
@@ -80,9 +84,11 @@ function displayToPage(addedObj) {
             <li class="list-li">${book.author}</li>
             <li class="list-li">${book.pages}</li>
             <li class="list-li">
-                <button id='toggler' onclick='toggle(event)'>${
-                  book.read == "true" ? "Read" : "Not Read"
-                }</button>
+                <button class='${
+                  book.read == "true" ? "success-read" : "failed-noread"
+                }' id='toggler' onclick='toggle(event)'>${
+      book.read == "true" ? "Read" : "Not Read"
+    }</button>
             </li>
             <button onclick='removeInstance(event)' id='remove' >Remove</button>
         </ul>`;
