@@ -13,6 +13,8 @@ submitForm.addEventListener("submit", function (e) {
   let formData = new FormData(submitForm);
   let parsedData = Object.fromEntries(formData);
 
+  console.log(parsedData);
+
   if (!myLibrary.some((item) => item.title === parsedData.title)) {
     addBookToLibrary(
       parsedData.title,
@@ -20,8 +22,7 @@ submitForm.addEventListener("submit", function (e) {
       parsedData.pages,
       parsedData.read
     );
-    console.log(hiddenLi)
-    hiddenLi.classList.add('hidden');
+    hiddenLi.classList.add("hidden");
     modal.close();
     submitForm.reset();
   } else {
@@ -86,10 +87,8 @@ function displayToPage(addedObj) {
     cardsContain.innerHTML += `
         <ul data-index=${idx} class="list-ul">
             <h4 class="list-li title">${book.title}</h4>
-            <li class="list-li"><span id='bySpan'>by </span>${
-              book.author
-            }</li>
-            <li class="list-li pages">${book.pages} pages</li>
+            <li class="list-li"><span id='bySpan'>by </span>${book.author}</li>
+            <li class="list-li pages">${book.pages} stars</li>
             <li class="list-li">
                 <button class='${
                   book.read == "true" ? "success-read" : "failed-noread"
