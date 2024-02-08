@@ -1,112 +1,144 @@
+class MyLibrary {
+  constructor() {
+    this.myBooks = [];
+  }
+  get books() {
+    return this.myBooks;
+  }
+  getIdx(book) {
+    if (this.myBooks.includes(book)) {
+      return this.myBooks.indexOf(book);
+    }
+  }
+  addBook(title, author, pages, read) {
+    let newBook = new Book(title, author, pages, read);
+    this.myBooks.push(newBook);
+    return newBook;
+  }
+  removeBook(event) {
+    let target = event.target.parentNode.getAttribute("data-idx");
+    this.myBooks.splice(target, 1);
+    event.target.parentNode.remove();
+    this.updateArr();
+  }
+  updateArr() {
+    const currDOMBooks = document.querySelectorAll("ul");
+    this.books.forEach((item, idx) => {
+      currDOMBooks.item(idx).setAttribute("data-idx", idx);
+    });
+  }
+}
+
+class Book {
+  constructor(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+  }
+  hasRead(event) {
+    this.read = !this.read;
+    if (event.target.textContent === "Read") {
+      event.target.textContent = "Not Read";
+      event.target.classList.remove("success-read");
+      event.target.classList.add("failed-noread");
+    } else {
+      event.target.textContent = "Read";
+      event.target.classList.add("success-read");
+      event.target.classList.remove("failed-noread");
+    }
+  }
+}
+
+let myLibrary = new MyLibrary();
+
 const cardsContain = document.querySelector(".card-container");
 const addNewBookBttn = document.querySelector(".new-book-bttn");
 const modal = document.querySelector(".modal");
 const modalDiv = document.querySelector("#closing-div");
 const cancelModal = document.querySelector("#cancel");
-const submitForm = document.querySelector("#bookForm");
-const hiddenLi = document.querySelector(".hidden");
+const form = document.querySelector("#bookForm");
+const hiddenP = document.querySelector(".hidden");
 
-let myLibrary = [];
+function getFormData() {
+  let formData = Object.fromEntries(new FormData(form));
+  return formData;
+}
 
-submitForm.addEventListener("submit", function (e) {
-  e.preventDefault();
-  let formData = new FormData(submitForm);
-  let parsedData = Object.fromEntries(formData);
-
-  console.log(parsedData);
-
-  if (!myLibrary.some((item) => item.title === parsedData.title)) {
-    addBookToLibrary(
-      parsedData.title,
-      parsedData.author,
-      parsedData.pages,
-      parsedData.read
-    );
-    hiddenLi.classList.add("hidden");
+function toggleModal() {
+  if (modal.open) {
     modal.close();
-    submitForm.reset();
   } else {
-    hiddenLi.classList.remove("hidden");
+    modal.showModal();
   }
-});
-
-function Book(title, author, pages, read) {
-  (this.title = title),
-    (this.author = author),
-    (this.pages = pages),
-    (this.read = read);
 }
 
-Book.prototype.hasRead = function () {
-  if (this.read === "true" || this.read === true) {
-    return (this.read = false);
+function toggleHiddenP(value) {
+  if (value !== "remove") {
+    hiddenP.classList.add("hidden");
   } else {
-    return (this.read = true);
+    hiddenP.classList.remove("hidden");
   }
-};
-
-function addBookToLibrary(inputTitle, inputAuthor, inputPages, inputRead) {
-  const newBook = new Book(
-    inputTitle,
-    inputAuthor,
-    inputPages,
-    `${inputRead ? true : false}`
-  );
-  myLibrary.push(newBook);
-  displayToPage(newBook);
 }
 
-function removeInstance(event) {
-  let getTitle = event.target.parentNode.firstElementChild.innerText;
-  let dataIndex = event.target.parentNode.getAttribute("data-index");
-  document.querySelector(`[data-index="${dataIndex}"]`).remove();
-  myLibrary = myLibrary.filter((item) => item.title !== getTitle);
-}
-
-function toggle(event) {
-  let getIdx = myLibrary.findIndex(
-    (item) =>
-      item.title ===
-      event.target.parentNode.parentNode.firstElementChild.textContent
-  );
-  if (myLibrary[getIdx].hasRead()) {
-    event.target.textContent = "Read";
-    event.target.classList.remove("failed-noread");
-    event.target.classList.add("success-read");
+function checkDuplicateTitleAndAddBook(event) {
+  event.preventDefault();
+  let data = getFormData();
+  if (!myLibrary.myBooks.some((item) => item.title === data.title)) {
+    displayToPage(
+      myLibrary.addBook(data.title, data.author, data.pages, data.read)
+    );
+    toggleHiddenP();
+    toggleModal();
+    form.reset();
   } else {
-    event.target.textContent = "Not Read";
-    event.target.classList.remove("success-read");
-    event.target.classList.add("failed-noread");
+    toggleHiddenP("remove");
   }
 }
 
-function displayToPage(addedObj) {
-  let idx = myLibrary.findIndex((item) => item.title === addedObj.title);
-  let newArr = [addedObj];
-  for (let book of newArr) {
-    cardsContain.innerHTML += `
-        <ul data-index=${idx} class="list-ul">
-            <h4 class="list-li title">${book.title}</h4>
-            <li class="list-li"><span id='bySpan'>by </span>${book.author}</li>
-            <li class="list-li pages">${book.pages} stars</li>
-            <li class="list-li">
-                <button class='${
-                  book.read == "true" ? "success-read" : "failed-noread"
-                }' id='toggler' onclick='toggle(event)'>${
-      book.read == "true" ? "Read" : "Not Read"
-    }</button>
-            </li>
-            <button onclick='removeInstance(event)' id='remove' >Remove</button>
-        </ul>`;
+function displayToPage(book) {
+  let idx = myLibrary.getIdx(book);
+  let bookEntries = Object.entries(book);
+
+  let ul = document.createElement("ul");
+  let readBttn = document.createElement("button");
+  readBttn.addEventListener("click", () => {
+    book.hasRead(event);
+  });
+  let removeBttn = document.createElement("button");
+  removeBttn.textContent = "Remove";
+  removeBttn.setAttribute("id", "remove");
+  removeBttn.addEventListener("click", () => {
+    myLibrary.removeBook(event);
+  });
+  ul.classList.add("list-ul");
+  ul.setAttribute("data-idx", idx);
+
+  for (let [item, value] of bookEntries) {
+    let li = document.createElement("li");
+    if (item === "read") {
+      readBttn.classList.add(`${value ? "success-read" : "failed-noread"}`);
+      readBttn.setAttribute("id", "toggler");
+      readBttn.textContent = `${
+        value ? (value = "Read") : (value = "Not Read")
+      }`;
+
+      ul.append(readBttn);
+      break;
+    }
+    li.classList.add("list-li");
+    li.textContent = value;
+    ul.append(li);
   }
+  ul.append(removeBttn);
+  cardsContain.append(ul);
 }
 
-addNewBookBttn.addEventListener("click", () => {
-  modal.showModal();
-});
-
-modal.addEventListener("click", () => modal.close());
-
-modalDiv.addEventListener("click", (event) => event.stopPropagation());
-
-cancelModal.addEventListener("click", () => modal.close());
+//EVENTS
+form.addEventListener("submit", checkDuplicateTitleAndAddBook);
+addNewBookBttn.addEventListener("click", toggleModal);
+cancelModal.addEventListener("click", toggleModal);
+cancelModal.addEventListener("click", toggleHiddenP);
+modal.addEventListener("click", toggleModal);
+modalDiv.addEventListener("click", (e) => e.stopPropagation());
+//EVENTS
